@@ -6,7 +6,8 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  background-color: rgba(255, 255, 255, 0.87);
+  /* background-color: rgba(255, 255, 255, 0.87); */
+  background: #fff;
   color: #242424;
 
   font-synthesis: none;
@@ -31,12 +32,14 @@ body {
 }
 
 .div-container {
-  margin-top: 30%;
+  margin-top: 20%;
+  /* background-color: red; */
 }
 .switch {
   display: flex;
   justify-content: space-between;
   text-align: end;
+  margin-top:30px;
 }
 
 .container {
@@ -58,9 +61,9 @@ body {
   grid-auto-rows: minmax(60px, auto);
 }
 
-/* input[type='text'] {
-  height: 75px;
-  width: 250px;
+input[type='text'] {
+  height: 150px;
+  width: 350px;
   font-size: 23px;
   font-weight: 600;
   letter-spacing: 2px;
@@ -70,8 +73,7 @@ body {
   color:#fff;
   text-align: right;
   margin: 5px auto;
-  border: 2px solid red;
-} */
+}
 
 .text {
   height: 150px;
@@ -90,7 +92,7 @@ body {
   margin: 5px auto;
 }
 
-.switch-state {
+.switch-state, .cac-name {
   text-align: end;
   font-weight: bold;
 }

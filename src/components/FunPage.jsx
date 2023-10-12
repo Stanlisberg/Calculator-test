@@ -1,9 +1,36 @@
-import React, { useState } from "react";
-import { Switch } from "antd";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import CalculatorContext from "./CalculatorContext";
 
-function CalculatorPage() {
-  const [answer, setAnswer] = useState("");
+function FunPage() {
+  const [disable, setDisable] = useState(true)
+  const [answer, setAnswer] = useState('');
+  const [disableButton, setDisableButton] = useState(false);
+  
+  const { 
+    fetchMovies, 
+    fetchJokes, 
+    fetchMemes, 
+    movies, 
+    jokes, 
+    memes 
+    } =
+    useContext(CalculatorContext);
+
+  useEffect(() => {
+    fetchJokes();
+    fetchMovies();
+    fetchMemes();
+  }, []);
+
+  console.log(memes);
+  console.log(movies);
+  console.log(jokes);
+
+
+// Disable button when switch to fun
+    // if (disable === true) {
+    //   setDisableButton(true);
+    // } 
 
   const clickButton = (e) => {
     setAnswer(answer.concat(e.target.value));
@@ -24,9 +51,15 @@ function CalculatorPage() {
   return (
     <>
       <div className="div-container">
-        <div className="text">
+       <div className="text">
           {answer}
         </div>
+        {/* <input 
+        type="text" 
+        value={answer} 
+        ref={inputRef}
+        onChange={() => inputChange}
+        /> */}
         <div className="button">
           <button
             className="change-color"
@@ -41,6 +74,7 @@ function CalculatorPage() {
           <button
             className="change-color"
             value="/"
+            disabled={disableButton === true ? true : false}
             onClick={clickButton}
           >
             &divide;
@@ -58,6 +92,7 @@ function CalculatorPage() {
             className="change-color"
             value="*"
             onClick={clickButton}
+            disabled={disableButton === true ? true : false}
           >
             &times;
           </button>
@@ -71,6 +106,7 @@ function CalculatorPage() {
             6
           </button>
           <button
+            disabled={disableButton === true ? true : false}
             className="change-color"
             value="-"
             onClick={clickButton}
@@ -87,6 +123,7 @@ function CalculatorPage() {
             3
           </button>
           <button
+            disabled={disableButton === true ? true : false}
             className="change-color"
             value="+"
             onClick={clickButton}
@@ -108,4 +145,4 @@ function CalculatorPage() {
   );
 }
 
-export default CalculatorPage;
+export default FunPage;
