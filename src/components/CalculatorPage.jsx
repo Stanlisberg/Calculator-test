@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { Switch } from "antd";
-import CalculatorContext from "./CalculatorContext";
 
 function CalculatorPage() {
   const [answer, setAnswer] = useState("");
@@ -24,9 +22,10 @@ function CalculatorPage() {
   return (
     <>
       <div className="div-container">
-        <div className="text">
-          {answer}
-        </div>
+        <input
+          type="text"
+          value={answer}
+        />
         <div className="button">
           <button
             className="change-color"
@@ -38,11 +37,7 @@ function CalculatorPage() {
           <button className="change-color" id="back-space" onClick={backSpace}>
             Del
           </button>
-          <button
-            className="change-color"
-            value="/"
-            onClick={clickButton}
-          >
+          <button className="change-color" value="/" onClick={clickButton}>
             &divide;
           </button>
           <button value="7" onClick={clickButton}>
@@ -54,11 +49,7 @@ function CalculatorPage() {
           <button value="9" onClick={clickButton}>
             9
           </button>
-          <button
-            className="change-color"
-            value="*"
-            onClick={clickButton}
-          >
+          <button className="change-color" value="*" onClick={clickButton}>
             &times;
           </button>
           <button value="4" onClick={clickButton}>
@@ -70,11 +61,7 @@ function CalculatorPage() {
           <button value="6" onClick={clickButton}>
             6
           </button>
-          <button
-            className="change-color"
-            value="-"
-            onClick={clickButton}
-          >
+          <button className="change-color" value="-" onClick={clickButton}>
             -
           </button>
           <button value="1" onClick={clickButton}>
@@ -86,11 +73,7 @@ function CalculatorPage() {
           <button value="3" onClick={clickButton}>
             3
           </button>
-          <button
-            className="change-color"
-            value="+"
-            onClick={clickButton}
-          >
+          <button className="change-color" value="+" onClick={clickButton}>
             +
           </button>
           <button value="0" onClick={clickButton}>

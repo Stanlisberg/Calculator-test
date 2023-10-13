@@ -2,35 +2,14 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 import CalculatorContext from "./CalculatorContext";
 
 function FunPage() {
-  const [disable, setDisable] = useState(true)
-  const [answer, setAnswer] = useState('');
-  const [disableButton, setDisableButton] = useState(false);
-  
-  const { 
-    fetchMovies, 
-    fetchJokes, 
-    fetchMemes, 
-    movies, 
-    jokes, 
-    memes 
-    } =
-    useContext(CalculatorContext);
+  const [answer, setAnswer] = useState("");
+  const { displayResponse, mainData } = useContext(CalculatorContext);
+  const inputRef = useRef();
 
-  useEffect(() => {
-    fetchJokes();
-    fetchMovies();
-    fetchMemes();
-  }, []);
-
-  console.log(memes);
-  console.log(movies);
-  console.log(jokes);
-
-
-// Disable button when switch to fun
-    // if (disable === true) {
-    //   setDisableButton(true);
-    // } 
+  //-------Ref for Input
+  if (inputRef.current?.value) {
+    console.log(inputRef.current.value);
+  }
 
   const clickButton = (e) => {
     setAnswer(answer.concat(e.target.value));
@@ -41,25 +20,32 @@ function FunPage() {
   };
 
   const backSpace = () => {
-    setAnswer(answer.slice(0, -1));
+    setAnswer(answer?.slice(0, -1));
   };
 
   const evaluate = () => {
-    setAnswer(eval(answer).toString());
+    if (answer == "753") {
+      setAnswer(mainData);
+      displayResponse(753);
+    } else if (answer == "172") {
+      setAnswer(mainData);
+      displayResponse(172);
+    } else if (answer == "112") {
+      setAnswer(mainData);
+      displayResponse(112);
+    }
+    // setAnswer(eval(answer).toString());
+    // console.log(divRef.current.textContent)
+    // setAnswer(mainData);
+    // displayResponse(753)
+    // setAnswer(mainData);
+    // displayResponse(753)
   };
 
   return (
     <>
       <div className="div-container">
-       <div className="text">
-          {answer}
-        </div>
-        {/* <input 
-        type="text" 
-        value={answer} 
-        ref={inputRef}
-        onChange={() => inputChange}
-        /> */}
+        <input type="text" value={answer} ref={inputRef} />
         <div className="button">
           <button
             className="change-color"
@@ -74,7 +60,7 @@ function FunPage() {
           <button
             className="change-color"
             value="/"
-            disabled={disableButton === true ? true : false}
+            disabled={true}
             onClick={clickButton}
           >
             &divide;
@@ -92,7 +78,7 @@ function FunPage() {
             className="change-color"
             value="*"
             onClick={clickButton}
-            disabled={disableButton === true ? true : false}
+            disabled={true}
           >
             &times;
           </button>
@@ -106,7 +92,7 @@ function FunPage() {
             6
           </button>
           <button
-            disabled={disableButton === true ? true : false}
+            disabled={true}
             className="change-color"
             value="-"
             onClick={clickButton}
@@ -123,7 +109,7 @@ function FunPage() {
             3
           </button>
           <button
-            disabled={disableButton === true ? true : false}
+            disabled={true}
             className="change-color"
             value="+"
             onClick={clickButton}

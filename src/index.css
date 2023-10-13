@@ -7,7 +7,7 @@
 
   color-scheme: light dark;
   /* background-color: rgba(255, 255, 255, 0.87); */
-  background: #fff;
+  background: grey;
   color: #242424;
 
   font-synthesis: none;
@@ -32,14 +32,13 @@ body {
 }
 
 .div-container {
-  margin-top: 20%;
-  /* background-color: red; */
+  margin-top: 10px;
 }
 .switch {
   display: flex;
   justify-content: space-between;
   text-align: end;
-  margin-top:30px;
+  margin-top: 70px;
 }
 
 .container {
@@ -61,16 +60,16 @@ body {
   grid-auto-rows: minmax(60px, auto);
 }
 
-input[type='text'] {
+input[type="text"] {
   height: 150px;
   width: 350px;
-  font-size: 23px;
+  font-size: 15px;
   font-weight: 600;
   letter-spacing: 2px;
   background-color: #101116;
   border: 1px solid grey;
   border-radius: 5px;
-  color:#fff;
+  color: #fff;
   text-align: right;
   margin: 5px auto;
 }
@@ -92,7 +91,8 @@ input[type='text'] {
   margin: 5px auto;
 }
 
-.switch-state, .cac-name {
+.switch-state,
+.cac-name {
   text-align: end;
   font-weight: bold;
 }

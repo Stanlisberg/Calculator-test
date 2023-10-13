@@ -3,60 +3,55 @@ import { createContext, useState } from "react";
 const CalculatorContext = createContext();
 
 export const CalculatorProvider = ({ children }) => {
-  const [movies, setMovies] = useState();
-  const [jokes, setJokes] = useState();
-  const [memes, setMemes] = useState();
+  const [mainData, setMainData] = useState();
+  const getRandom = Math.floor(Math.random() * 10);
 
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzOGQyNDQ2ZTg1ZmQ2Mzc3NGM5ZjNhODY2N2U1MmI3ZiIsInN1YiI6IjYxMDNhNWQ0NDI4NGVhMDA1ZDE5OTc2MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FG38CkW-ijLIMRLiOIeoPLJeQV_0O2bSIK5vymhKKNE",
-    },
-  };
+  const displayResponse = async (value) => {
+    if (value === 753) {
+      const options = {
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzOGQyNDQ2ZTg1ZmQ2Mzc3NGM5ZjNhODY2N2U1MmI3ZiIsInN1YiI6IjYxMDNhNWQ0NDI4NGVhMDA1ZDE5OTc2MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FG38CkW-ijLIMRLiOIeoPLJeQV_0O2bSIK5vymhKKNE",
+        },
+      };
 
-  const fetchMovies = async () => {
-    const response = await fetch(
-      "https://api.themoviedb.org/3/discover/movie?page=${page}",
-      options
-    );
-    const data = await response.json();
+      //--------Fetch Movies-----------
+      const response = await fetch(
+        "https://api.themoviedb.org/3/discover/movie?page=${page}",
+        options
+      );
+      const data = await response.json();
 
-    const { results } = data;
-    // console.log(results)
-    setMovies(results);
-  };
+      const { results } = data;
+      setMainData(results[getRandom].original_title);
+    } else if (value === 172) {
 
-  const fetchJokes = async () => {
-    const response = await fetch(
-      "https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw&type=twopart&amount=10"
-    );
-    const data = await response.json();
+      //-----Fetch Jokes-------------
+      const response = await fetch(
+        "https://v2.jokeapi.dev/joke/Programming?type=single&amount=10"
+      );
+      const data = await response.json();
 
-    const { jokes } = data;
-    // console.log(jokes)
-    setJokes(jokes);
-  };
+      const { jokes } = data;
+      setMainData(jokes[getRandom].joke);
+    } else if (value === 112) {
 
-  const fetchMemes = async () => {
-    const response = await fetch("https://api.imgflip.com/get_memes");
-    const item = await response.json();
+      //------------fetch Movies------------
+      const response = await fetch("https://api.imgflip.com/get_memes");
+      const item = await response.json();
 
-    const { data } = item;
-    // console.log(data.memes)
-    setMemes(data.memes);
+      const { data } = item;
+      setMainData(data.memes[getRandom].name);
+    }
   };
 
   return (
     <CalculatorContext.Provider
       value={{
-        fetchJokes,
-        fetchMovies,
-        fetchMemes,
-        movies,
-        jokes,
-        memes,
+        displayResponse,
+        mainData,
       }}
     >
       {children}
