@@ -25,6 +25,7 @@ function CalculatorPage() {
         <input
           type="text"
           value={answer}
+          onChange ={() => {}}
         />
         <div className="button">
           <button

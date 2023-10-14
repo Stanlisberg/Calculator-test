@@ -3,7 +3,9 @@ import { createContext, useState } from "react";
 const CalculatorContext = createContext();
 
 export const CalculatorProvider = ({ children }) => {
-  const [mainData, setMainData] = useState();
+  const [movieData, setMovieData] = useState();
+  const [jokeData, setJokeData] = useState();
+  const [memeData, setMemeData] = useState();
   const getRandom = Math.floor(Math.random() * 10);
 
   const displayResponse = async (value) => {
@@ -25,7 +27,7 @@ export const CalculatorProvider = ({ children }) => {
       const data = await response.json();
 
       const { results } = data;
-      setMainData(results[getRandom].original_title);
+      setMovieData(results[getRandom].original_title);
     } else if (value === 172) {
 
       //-----Fetch Jokes-------------
@@ -35,15 +37,15 @@ export const CalculatorProvider = ({ children }) => {
       const data = await response.json();
 
       const { jokes } = data;
-      setMainData(jokes[getRandom].joke);
+      setJokeData(jokes[getRandom].joke);
     } else if (value === 112) {
 
-      //------------fetch Movies------------
+      //------------fetch Memes------------
       const response = await fetch("https://api.imgflip.com/get_memes");
       const item = await response.json();
 
       const { data } = item;
-      setMainData(data.memes[getRandom].name);
+      setMemeData(data.memes[getRandom].name);
     }
   };
 
@@ -51,7 +53,9 @@ export const CalculatorProvider = ({ children }) => {
     <CalculatorContext.Provider
       value={{
         displayResponse,
-        mainData,
+        movieData,
+        jokeData,
+        memeData
       }}
     >
       {children}

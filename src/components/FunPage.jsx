@@ -1,22 +1,18 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import CalculatorContext from "./CalculatorContext";
 
 function FunPage() {
   const [answer, setAnswer] = useState("");
-  const { displayResponse, mainData } = useContext(CalculatorContext);
-  const inputRef = useRef();
+  const { displayResponse, movieData, jokeData, memeData } = useContext(CalculatorContext);
 
-  //-------Ref for Input
-  if (inputRef.current?.value) {
-    console.log(inputRef.current.value);
-  }
+  useEffect(() => {
+    displayResponse(753);
+    displayResponse(172);
+    displayResponse(112);
+  }, []);
 
   const clickButton = (e) => {
     setAnswer(answer.concat(e.target.value));
-  };
-
-  const clearButton = () => {
-    setAnswer("");
   };
 
   const backSpace = () => {
@@ -24,33 +20,29 @@ function FunPage() {
   };
 
   const evaluate = () => {
-    if (answer == "753") {
-      setAnswer(mainData);
-      displayResponse(753);
-    } else if (answer == "172") {
-      setAnswer(mainData);
-      displayResponse(172);
-    } else if (answer == "112") {
-      setAnswer(mainData);
-      displayResponse(112);
+    if (answer?.includes("753")) {
+      setAnswer(movieData);
+    } else if (answer?.includes("172")) {
+      setAnswer(jokeData);
+    } else if (answer?.includes("112")) {
+      setAnswer(memeData);
     }
-    // setAnswer(eval(answer).toString());
-    // console.log(divRef.current.textContent)
-    // setAnswer(mainData);
-    // displayResponse(753)
-    // setAnswer(mainData);
-    // displayResponse(753)
   };
 
   return (
     <>
       <div className="div-container">
-        <input type="text" value={answer} ref={inputRef} />
+        <input type="text" value={answer} onChange={() => {}} />
         <div className="button">
           <button
             className="change-color"
             id="clear-button"
-            onClick={clearButton}
+            onClick={() => {
+              setAnswer("");
+              displayResponse(753);
+              displayResponse(172);
+              displayResponse(112);
+            }}
           >
             Reset
           </button>
@@ -123,7 +115,7 @@ function FunPage() {
             .
           </button>
           <button className="change-color" id="answer" onClick={evaluate}>
-            =
+            Send
           </button>
         </div>
       </div>
