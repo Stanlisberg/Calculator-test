@@ -1,5 +1,5 @@
 import { useState } from "react";
-import CalculatorPage from "./components/CalculatorPage";
+import SeriousPage from "./components/SeriousPage";
 import FunPage from "./components/FunPage";
 import { CalculatorProvider } from "./components/CalculatorContext";
 import { Switch } from "antd";
@@ -34,7 +34,7 @@ function App() {
         </div>
         <div className="switch-state">{switchState}</div>
         <CalculatorProvider>
-          {changeComponent === false ? <FunPage /> : <CalculatorPage />}
+          {changeComponent === false ? <FunPage /> : <SeriousPage />}
         </CalculatorProvider>
       </div>
     </>

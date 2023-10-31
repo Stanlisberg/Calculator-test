@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function CalculatorPage() {
+function SeriousPage() {
   const [answer, setAnswer] = useState("");
 
   const clickButton = (e) => {
@@ -92,4 +92,4 @@ function CalculatorPage() {
   );
 }
 
-export default CalculatorPage;
+export default SeriousPage;

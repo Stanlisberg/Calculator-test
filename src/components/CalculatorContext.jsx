@@ -4,7 +4,7 @@ const CalculatorContext = createContext();
 
 export const CalculatorProvider = ({ children }) => {
   const [movieData, setMovieData] = useState();
-  const [jokeData, setJokeData] = useState();
+  const [jokeData, setJokeData] = useState(); 
   const [memeData, setMemeData] = useState();
   const getRandom = Math.floor(Math.random() * 10);
 
